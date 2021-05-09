@@ -34,8 +34,7 @@ public class MessageUtil {
         try {
             Map<String, List<String>> valueMap = createValueMap(centers);
             //String message = createTableMessage(valueMap);
-            String message = createEmailMessage(valueMap);
-            return message;
+            return createEmailMessage(valueMap);
         } catch (JsonProcessingException jsonProcessingException) {
             jsonProcessingException.printStackTrace();
         }
