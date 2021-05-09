@@ -9,6 +9,7 @@ vm/
 mvnw
 mvnw.cmd
 logs/
+outsource/
 ### STS ###
 .apt_generated
 .classpath
