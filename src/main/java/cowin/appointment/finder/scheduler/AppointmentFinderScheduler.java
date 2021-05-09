@@ -113,7 +113,8 @@ public class AppointmentFinderScheduler {
     private void notifyUser(List<User> youngUser, List<Center> centers,String subject) {
         String message = messageUtil.createMessageTable(centers);
         String [] email = new String[youngUser.size()];
-        youngUser.stream().map(User::getEmail).collect(Collectors.toList()).toArray(email);
+        youngUser.stream().filter(user -> null != user.getEmail()).
+                map(User::getEmail).collect(Collectors.toList()).toArray(email);
         emailService.sendSimpleMessage(email,message, subject);
         youngUser.forEach(user -> user.setEmailCount(user.getEmailCount()+1));
         userRepository.saveAll(youngUser);
