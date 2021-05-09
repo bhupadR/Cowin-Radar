@@ -1,6 +1,7 @@
 package cowin.appointment.finder.service;
 
 import cowin.appointment.finder.entity.User;
+import lombok.extern.log4j.Log4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
+@Log4j
 public class TelegramClientServiceImpl implements TelegramClientService{
 
     @Value("${token}")
@@ -35,7 +37,7 @@ public class TelegramClientServiceImpl implements TelegramClientService{
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
-                    System.out.println(response.body().string());
+                    log.info(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
