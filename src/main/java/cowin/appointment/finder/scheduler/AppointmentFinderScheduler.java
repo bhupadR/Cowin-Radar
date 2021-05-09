@@ -110,7 +110,7 @@ public class AppointmentFinderScheduler {
     }
 
     @Transactional
-    private void notifyUser(List<User> youngUser, List<Center> centers,String subject) {
+    public void notifyUser(List<User> youngUser, List<Center> centers,String subject) {
         String message = messageUtil.createMessageTable(centers);
         String [] email = new String[youngUser.size()];
         youngUser.stream().filter(user -> null != user.getEmail()).
