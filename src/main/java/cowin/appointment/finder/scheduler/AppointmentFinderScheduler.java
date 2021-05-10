@@ -1,7 +1,9 @@
 package cowin.appointment.finder.scheduler;
 
+import cowin.appointment.finder.entity.CenterEntity;
 import cowin.appointment.finder.entity.MessageArchive;
 import cowin.appointment.finder.entity.User;
+import cowin.appointment.finder.repository.CenterRepositroy;
 import cowin.appointment.finder.repository.MessageArchiveRepository;
 import cowin.appointment.finder.repository.UserRepository;
 import cowin.appointment.finder.response.Center;
@@ -13,6 +15,7 @@ import cowin.appointment.finder.utility.MessageUtil;
 import cowin.appointment.finder.utility.ResponseUtil;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,9 +55,16 @@ public class AppointmentFinderScheduler {
     @Autowired
     MessageUtil messageUtil;
 
+    @Autowired
+    CenterRepositroy centerRepositroy;
+
+    @Value("${admin.number}")
+    String chatId;
+
     @Scheduled(cron = "${appointment.scheduler.cron}")
     public void appointmentFinder(){
 
+        log.info("scheduler started "+new Date());
         List<User> userList = userRepository.findAllByStatus(0);
         log.info( userList);
         if(!userList.isEmpty()){
@@ -118,13 +129,32 @@ public class AppointmentFinderScheduler {
         emailService.sendSimpleMessage(email,message, subject);
         youngUser.forEach(user -> user.setEmailCount(user.getEmailCount()+1));
         userRepository.saveAll(youngUser);
-        List<MessageArchive> collect = youngUser.stream().map(user -> MessageArchive.builder().message(subject+"\n"+message).user(user).build()).
+        List<MessageArchive> collect = youngUser.stream().map(user -> MessageArchive.builder().message(subject+"\n"+message).
+                user(user).build()).
                 collect(Collectors.toList());
         messageArchiveRepository.saveAll(collect);
         telegramClientService.sendTelegramText(message+" "+subject,youngUser);
-
+        createCenter(centers);
         log.info(" notification triggered "+message);
     }
 
 
+    private void createCenter(List<Center> centers){
+        List<CenterEntity> centerEntities = centers.stream().map(center -> {
+            return CenterEntity.builder().latitude(center.getLat()).longitude(center.longitude).name(center.name).
+                    pincode(center.getPincode()).
+                    isEighteenPlus(center.getSessions().stream().filter(session -> (session.getAvailableCapacity() > 0 &&
+                            session.getMinAgeLimit() >= 18)).count() > 0).
+                    isFortyFivePlus(center.getSessions().stream().filter(session -> (session.getAvailableCapacity() > 0 &&
+                            session.getMinAgeLimit() >= 45)).count() > 0).address(center.getAddress()).build();
+        }).collect(Collectors.toList());
+        List<CenterEntity> centerRepositroyAll = centerRepositroy.findAll();
+        centerEntities.removeAll(centerRepositroyAll);
+        if(!centerEntities.isEmpty()){
+            log.info(" adding new center "+centerEntities);
+            centerRepositroy.saveAll(centerEntities);
+            telegramClientService.sendMessageToAdmin(" new center added "+centerEntities.stream().map(CenterEntity::getName)
+                    .collect(Collectors.toList()),chatId);
+        }
+    }
 }

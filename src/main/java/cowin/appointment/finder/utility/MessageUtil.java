@@ -81,7 +81,7 @@ public class MessageUtil {
         return valueTable;
     }
 
-    private String createTableMessage(Map<String, List<String>> valueMap){
+    /*private String createTableMessage(Map<String, List<String>> valueMap){
         TreeMap<String,String> columnTitleMap = new TreeMap<>();
         columnTitleMap.putAll(sessionColumnMap);
         columnTitleMap.putAll(centerColumnMap);
@@ -140,5 +140,5 @@ public class MessageUtil {
             sb.append("_|");
         }
         sb.append("\n");
-    }
+    }*/
 }

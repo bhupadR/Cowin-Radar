@@ -8,4 +8,6 @@ import java.util.List;
 public interface TelegramClientService {
 
     public void sendTelegramText( String text, List<User> users);
+
+    public void sendMessageToAdmin(String text,String number);
 }
