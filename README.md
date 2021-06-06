@@ -1,5 +1,7 @@
 # Cowin-Radar
 
+Project Requirement : Java 8, Maven, IDE
+
 Use this project to book vaccination slot in India. The cowin api used in this project are private API's which need an otp. One OTP can make a maximum of 21 api calls. Everytime you will have to provide OTP manually after certain interval of time(like copy and paste). 
 
 Run this spring boot project from an IDE like Intellij. 
@@ -13,15 +15,11 @@ To run this project some properties are necessary and need to be placed are spec
 Add this below properties in the application.properties file
 
 
-appointment.scheduler.cron=-
 appointment.private.scheduler.cron=1 * * * * *
-#appointment.private.scheduler.cron=*/20 * * * * *
-############# Cowin API Properties #################
-cowin.api=https://cdn-api.co-vin.in/api/
 
-############ Column Specification #############
-center.column.map={'name':'Center Name','pincode':'Pincode','fee_type':'Fee Type'}
-session.column.map={'date':'Date','available_capacity':'Available Capacity','min_age_limit':'Age Limit','vaccine':'Vaccine Name'}
+############# Cowin API Properties #################
+
+cowin.api=https://cdn-api.co-vin.in/api/
 
 ############## Telegram Bot token ######################
 token=
