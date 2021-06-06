@@ -1,5 +1,7 @@
 # Cowin-Radar
 
+Project Requirement : Java 8, Maven, IDE
+
 Use this project to book vaccination slot in India. The cowin api used in this project are private API's which need an otp. One OTP can make a maximum of 21 api calls. Everytime you will have to provide OTP manually after certain interval of time(like copy and paste). 
 
 Run this spring boot project from an IDE like Intellij. 
