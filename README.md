@@ -13,7 +13,6 @@ To run this project some properties are necessary and need to be placed are spec
 Add this below properties in the application.properties file
 
 
-appointment.scheduler.cron=-
 appointment.private.scheduler.cron=1 * * * * *
 #appointment.private.scheduler.cron=*/20 * * * * *
 ############# Cowin API Properties #################
