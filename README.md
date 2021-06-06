@@ -22,27 +22,34 @@ appointment.private.scheduler.cron=1 * * * * *
 cowin.api=https://cdn-api.co-vin.in/api/
 
 ############## Telegram Bot token ######################
+
 token=
 
 
 ############# Generate OPT secret ################
+
 generate.otp.secret=U2FsdGVkX18jgVMLXdH8YxfSapanIAlcPscovzSfwLdfmKtkxw0EBaa9rn7uHga2m2yudKc65tatfkC0/nwXRQ==
 
 server.port=0
 
 ################## Telegram number ##################
+
 admin.number=
 
 ################## Cowin Registered number #################
+
 admin.phone.number=
 
 ################# list of telegram number to trigger notification ###################
+
 list.of.numbers=
 
 ################## list of beneficiary id to book slot #####################
+
 beneficiary.id.list=
 
 ############# Search center in District ################
+
 district_id=363
 
 
