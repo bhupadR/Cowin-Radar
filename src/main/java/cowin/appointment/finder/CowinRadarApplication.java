@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class CowinRadarApplication {
 
 	public static void main(String[] args) {
-		PropertyConfigurator.configure("/opt/conf/cowin-radar/outsource/log4j2.properties");
+		//PropertyConfigurator.configure("/opt/conf/cowin-radar/outsource/log4j2.properties");
 		log.info("Cowin radar started");
 		SpringApplication.run(CowinRadarApplication.class, args);
 	}

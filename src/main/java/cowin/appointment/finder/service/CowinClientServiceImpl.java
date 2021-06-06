@@ -34,14 +34,16 @@ public class CowinClientServiceImpl implements CowinClientService{
     @Value("${cowin.api.all.district:v2/admin/location/districts/}")
     String allDistricts;
 
-    @Value("${cowin.api.find.by.district:v2/appointment/sessions/public/findByDistrict}")
+    @Value("${cowin.api.find.by.district:v2/appointment/sessions/findByDistrict}")
     String findByDistrictID;
 
-    @Value("${cowin.api.calendar.by.pin:v2/appointment/sessions/public/calendarByPin}")
+    @Value("${cowin.api.calendar.by.pin:v2/appointment/sessions/calendarByPin}")
     String calendarByPin;
 
-    @Value("${cowin.api.calendar.by.district:v2/appointment/sessions/public/calendarByDistrict}")
+    @Value("${cowin.api.calendar.by.district:v2/appointment/sessions/calendarByDistrict}")
     String calendarByDistrict;
+
+    String authToken;
 
     public StateResponse getAllStates() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
@@ -159,8 +161,14 @@ public class CowinClientServiceImpl implements CowinClientService{
             assert body != null;
             String responseBody = body.string();
             return objectMapper.readValue(responseBody, CenterResponse.class);
-        }else {
-            return null;
         }
+        return null;
     }
+
+    @Override
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+
 }

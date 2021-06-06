@@ -10,4 +10,6 @@ public interface TelegramClientService {
     public void sendTelegramText( String text, List<User> users);
 
     public void sendMessageToAdmin(String text,String number);
+
+    void sendTelegramMessageToNumbers(String s, List<String> listOfNumbers);
 }

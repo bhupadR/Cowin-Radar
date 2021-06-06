@@ -36,4 +36,8 @@ public class Session{
     public int minAgeLimit;
     public String vaccine;
     public List<String> slots;
+    @JsonProperty("available_capacity_dose1")
+    public Integer availableCapacityDose1;
+    @JsonProperty("available_capacity_dose2")
+    public Integer availableCapacityDose2;
 }

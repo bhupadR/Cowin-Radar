@@ -8,6 +8,7 @@ import cowin.appointment.finder.repository.MessageArchiveRepository;
 import cowin.appointment.finder.repository.UserRepository;
 import cowin.appointment.finder.response.Center;
 import cowin.appointment.finder.response.CenterResponse;
+import cowin.appointment.finder.service.CowinAuthClientService;
 import cowin.appointment.finder.service.CowinClientService;
 import cowin.appointment.finder.service.EmailService;
 import cowin.appointment.finder.service.TelegramClientService;
@@ -61,10 +62,15 @@ public class AppointmentFinderScheduler {
     @Value("${admin.number}")
     String chatId;
 
+    @Autowired
+    CowinAuthClientService cowinAuthClientService;
+
     @Scheduled(cron = "${appointment.scheduler.cron}")
     public void appointmentFinder(){
 
         log.info("scheduler started "+new Date());
+        String phoneNumber= "8999551302";
+        cowinAuthClientService.authenticateAndToken(phoneNumber);
         List<User> userList = userRepository.findAllByStatus(0);
         log.info( userList);
         if(!userList.isEmpty()){
