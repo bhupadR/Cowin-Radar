@@ -209,7 +209,6 @@ public class CowinAuthClientServiceImpl implements CowinAuthClientService{
                 if(response.code()==200){
                     return response;
                 }
-                response.close();
             }
         }
         return response;

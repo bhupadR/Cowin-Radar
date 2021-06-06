@@ -43,13 +43,8 @@ public class AppointmentFinderV2Scheduler {
     @Autowired
     SlotFinder slotFinder;
 
-    String puneDistrict ="363";
-
-    @Value("${beneficiary.id.bhupad}")
-    String bhupadBeneficiaryId;
-
-    @Value("${beneficiary.id.nitin}")
-    String nitinBeneficiaryId;
+    @Value("${district_id:363}")
+    String puneDistrict;
 
     @Value("#{'${beneficiary.id.list}'.split(',')}")
     private List<String> beneficiariesList;
