@@ -19,15 +19,6 @@ appointment.private.scheduler.cron=1 * * * * *
 ############# Cowin API Properties #################
 cowin.api=https://cdn-api.co-vin.in/api/
 
-############ Datasource Properties ###############
-spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
-spring.datasource.username=refill
-spring.datasource.password=refill
-spring.datasource.url=jdbc:mysql://localhost:3306/cowin_radar?createDatabaseIfNotExist=true
-#spring.jpa.hibernate.ddl-auto=validate
-spring.jpa.show-sql=true
-
-
 ############ Column Specification #############
 center.column.map={'name':'Center Name','pincode':'Pincode','fee_type':'Fee Type'}
 session.column.map={'date':'Date','available_capacity':'Available Capacity','min_age_limit':'Age Limit','vaccine':'Vaccine Name'}
@@ -56,7 +47,6 @@ beneficiary.id.list=
 ############# Search center in District ################
 district_id=363
 
-There is lot of unnecessary code which is my old public api implementation of cowin API's. But the private API's implementation is working and I have personally booked my slot by using this project within 24 hours after implementation of this project. 
 
 
 bhupad.rathi@gmail.com
