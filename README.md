@@ -10,6 +10,7 @@ After some time period the authentication token will expire and the schedular wi
 
 To run this project some properties are necessary and need to be placed are specific path /opt/conf/cowin-radar/outsource/application.properties
 
+Add this below properties in the application.properties file
 
 
 appointment.scheduler.cron=-
