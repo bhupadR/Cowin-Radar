@@ -14,7 +14,7 @@ Add this below properties in the application.properties file
 
 
 appointment.private.scheduler.cron=1 * * * * *
-#appointment.private.scheduler.cron=*/20 * * * * *
+
 ############# Cowin API Properties #################
 cowin.api=https://cdn-api.co-vin.in/api/
 
