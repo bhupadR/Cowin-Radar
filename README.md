@@ -57,3 +57,6 @@ beneficiary.id.list=
 district_id=363
 
 There is lot of unnecessary code which is my old public api implementation of cowin API's. But the private API's implementation is working and I have personally booked my slot by using this project within 24 hours after implementation of this project. 
+
+
+bhupad.rathi@gmail.com
