@@ -16,11 +16,8 @@ Add this below properties in the application.properties file
 appointment.private.scheduler.cron=1 * * * * *
 
 ############# Cowin API Properties #################
-cowin.api=https://cdn-api.co-vin.in/api/
 
-############ Column Specification #############
-center.column.map={'name':'Center Name','pincode':'Pincode','fee_type':'Fee Type'}
-session.column.map={'date':'Date','available_capacity':'Available Capacity','min_age_limit':'Age Limit','vaccine':'Vaccine Name'}
+cowin.api=https://cdn-api.co-vin.in/api/
 
 ############## Telegram Bot token ######################
 token=
